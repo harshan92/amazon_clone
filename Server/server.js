@@ -2,17 +2,17 @@ const express = require('express')
 const morgan = require('morgan')
 const bodyParser=require("body-parser")
 const mongoose=require("mongoose");
+const dotenv=require("dotenv")
+dotenv.config()
 const app = express()
 
-mongoose.connect('mongodb://localhost:27017/myapp', {useNewUrlParser: true},(err)=>{
+mongoose.connect(process.env.DATABASE, {useNewUrlParser: true},(err)=>{
     if(err){
         console.log(err);
     }else{
         console.log("DB connected.");
     }
 })
-
-
 
 //middlewares
 app.use(morgan('dev'))
